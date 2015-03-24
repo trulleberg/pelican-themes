@@ -114,14 +114,14 @@
 								<li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
 							{% endfor %}
 						</ul>
-                        <ul class="right">                                                                                                                                           
-                             {% for pg in PAGES | sort(attribute='index') %}                                                                                                          
-                                 {% if 'http://' in pg.url -%}                                                                                                                        
-                                     <li><a href="{{ pg.url }}">{{ pg.title }}</a></li>                                                                                               
-                                 {% else %}····                                                                                                                                       
+                        <ul class="right">
+                             {% for pg in PAGES | sort(attribute='index') %}
+                                 {% if 'http://' in pg.url -%}
+                                     <li><a href="{{ pg.url }}">{{ pg.title }}</a></li>
+                                 {% else %}
                                      <li{% if pg == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ pg.url }}">{{ pg.title }}</a></li>                                    
-                                 {% endif %}                                                                                                                                          
-                             {% endfor %}                                                                                                                                             
+                                 {% endif %}
+                             {% endfor %}
                         </ul>  
 					</section>
 				</nav>
@@ -182,6 +182,16 @@
 									{% endfor %}
 								</ul>
 							</div>
+                            {% if extra_siteurls %}
+							    <div class="panel">
+								<h5>Translations</h5>
+								<ul class="side-nav">
+                                  {% for lang, url in extra_siteurls.items() %}
+                                   <li><a href="{{ url }}">{{ lang | lookup_lang_name }}</a></li>
+                                  {% endfor %}
+                                   <!-- separator -->
+                            {% endif %}
+						    </div>
 						</aside>
 						<!-- End Sidebar -->
 					</div>
